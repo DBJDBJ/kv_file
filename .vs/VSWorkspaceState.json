@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src\\fs\\tests",
+    "\\src\\platform\\unix",
+    "\\src\\platform\\win32",
+    "\\src\\platform\\win32\\mman",
+    "\\tests"
+  ],
+  "PreviewInSolutionExplorer": false
+}

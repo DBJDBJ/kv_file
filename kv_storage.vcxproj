@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{A4C1A50D-20E0-44E9-9E0E-DCB72AEE74FC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>ClangCL</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\MACHINE_WIDE;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\MACHINE_WIDE;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>D:\MACHINE_WIDE;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>D:\MACHINE_WIDE;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <ExceptionHandling>false</ExceptionHandling>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <ExceptionHandling>false</ExceptionHandling>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <ExceptionHandling>false</ExceptionHandling>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <ExceptionHandling>false</ExceptionHandling>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\fs\iwexfile.c" />
+    <ClCompile Include="src\fs\iwfile.c" />
+    <ClCompile Include="src\fs\iwfs.c" />
+    <ClCompile Include="src\fs\iwfsmfile.c" />
+    <ClCompile Include="src\fs\tests\iwfs_test1.c" />
+    <ClCompile Include="src\fs\tests\iwfs_test2.c" />
+    <ClCompile Include="src\fs\tests\iwfs_test3.c" />
+    <ClCompile Include="src\iowow.c" />
+    <ClCompile Include="src\kv\benchmark\bdb_benchmark.c" />
+    <ClCompile Include="src\kv\benchmark\bmbase.c" />
+    <ClCompile Include="src\kv\benchmark\iwkv_benchmark.c" />
+    <ClCompile Include="src\kv\benchmark\kyc_benchmark.c" />
+    <ClCompile Include="src\kv\benchmark\leveldb_benchmark.c" />
+    <ClCompile Include="src\kv\benchmark\lmdb_benchmark.c" />
+    <ClCompile Include="src\kv\benchmark\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridcxx\CMakeCXXCompilerId.cpp" />
+    <ClCompile Include="src\kv\benchmark\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridc\CMakeCCompilerId.c" />
+    <ClCompile Include="src\kv\benchmark\out\build\x64-debug (default)\cmakefiles\showincludes\main.c" />
+    <ClCompile Include="src\kv\benchmark\tc_benchmark.c" />
+    <ClCompile Include="src\kv\benchmark\wiredtiger_benchmark.c" />
+    <ClCompile Include="src\kv\dbg\iwkvdbg.c" />
+    <ClCompile Include="src\kv\examples\compoundkeys1.c" />
+    <ClCompile Include="src\kv\examples\cursors1.c" />
+    <ClCompile Include="src\kv\examples\example1.c" />
+    <ClCompile Include="src\kv\examples\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridcxx\CMakeCXXCompilerId.cpp" />
+    <ClCompile Include="src\kv\examples\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridc\CMakeCCompilerId.c" />
+    <ClCompile Include="src\kv\examples\out\build\x64-debug (default)\cmakefiles\showincludes\main.c" />
+    <ClCompile Include="src\kv\iwal.c" />
+    <ClCompile Include="src\kv\iwkv.c" />
+    <ClCompile Include="src\kv\tests\iwkv_test1.c" />
+    <ClCompile Include="src\kv\tests\iwkv_test10.c" />
+    <ClCompile Include="src\kv\tests\iwkv_test2.c" />
+    <ClCompile Include="src\kv\tests\iwkv_test3.c" />
+    <ClCompile Include="src\kv\tests\iwkv_test4.c" />
+    <ClCompile Include="src\kv\tests\iwkv_test5.c" />
+    <ClCompile Include="src\kv\tests\iwkv_test6.c" />
+    <ClCompile Include="src\kv\tests\iwkv_test7.c" />
+    <ClCompile Include="src\kv\tests\iwkv_test8.c" />
+    <ClCompile Include="src\kv\tests\iwkv_test9.c" />
+    <ClCompile Include="src\log\iwlog.c" />
+    <ClCompile Include="src\log\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridcxx\CMakeCXXCompilerId.cpp" />
+    <ClCompile Include="src\log\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridc\CMakeCCompilerId.c" />
+    <ClCompile Include="src\log\out\build\x64-debug (default)\cmakefiles\showincludes\main.c" />
+    <ClCompile Include="src\log\tests\iwlog_test1.c" />
+    <ClCompile Include="src\log\tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridcxx\CMakeCXXCompilerId.cpp" />
+    <ClCompile Include="src\log\tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridc\CMakeCCompilerId.c" />
+    <ClCompile Include="src\log\tests\out\build\x64-debug (default)\cmakefiles\showincludes\main.c" />
+    <ClCompile Include="src\platform\iwp.c" />
+    <ClCompile Include="src\platform\unix\unix.c" />
+    <ClCompile Include="src\platform\win32\mman\mman.c" />
+    <ClCompile Include="src\platform\win32\win32.c" />
+    <ClCompile Include="src\rdb\iwrdb.c" />
+    <ClCompile Include="src\utils\iwarr.c" />
+    <ClCompile Include="src\utils\iwconv.c" />
+    <ClCompile Include="src\utils\iwhmap.c" />
+    <ClCompile Include="src\utils\iwpool.c" />
+    <ClCompile Include="src\utils\iwsha2.c" />
+    <ClCompile Include="src\utils\iwstree.c" />
+    <ClCompile Include="src\utils\iwstw.c" />
+    <ClCompile Include="src\utils\iwth.c" />
+    <ClCompile Include="src\utils\iwutils.c" />
+    <ClCompile Include="src\utils\iwuuid.c" />
+    <ClCompile Include="src\utils\iwxstr.c" />
+    <ClCompile Include="src\utils\mt19937ar.c" />
+    <ClCompile Include="src\utils\murmur3.c" />
+    <ClCompile Include="tests\log_tests\iwlog_test1.c" />
+    <ClCompile Include="tests\log_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridcxx\CMakeCXXCompilerId.cpp" />
+    <ClCompile Include="tests\log_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridc\CMakeCCompilerId.c" />
+    <ClCompile Include="tests\log_tests\out\build\x64-debug (default)\cmakefiles\showincludes\main.c" />
+    <ClCompile Include="tests\main.c" />
+    <ClCompile Include="tests\utils_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridcxx\CMakeCXXCompilerId.cpp" />
+    <ClCompile Include="tests\utils_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridc\CMakeCCompilerId.c" />
+    <ClCompile Include="tests\utils_tests\out\build\x64-debug (default)\cmakefiles\showincludes\main.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\kv\benchmark\benchmark_results.html" />
+    <None Include="src\kv\benchmark\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_C.bin" />
+    <None Include="src\kv\benchmark\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_CXX.bin" />
+    <None Include="src\kv\examples\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_C.bin" />
+    <None Include="src\kv\examples\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_CXX.bin" />
+    <None Include="src\log\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_C.bin" />
+    <None Include="src\log\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_CXX.bin" />
+    <None Include="src\log\tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_C.bin" />
+    <None Include="src\log\tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_CXX.bin" />
+    <None Include="tests\log_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_C.bin" />
+    <None Include="tests\log_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_CXX.bin" />
+    <None Include="tests\utils_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_C.bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\basedefs.h" />
+    <ClInclude Include="src\fs\iwdlsnr.h" />
+    <ClInclude Include="src\fs\iwexfile.h" />
+    <ClInclude Include="src\fs\iwfile.h" />
+    <ClInclude Include="src\fs\iwfsmfile.h" />
+    <ClInclude Include="src\iowow.h" />
+    <ClInclude Include="src\kv\benchmark\out\build\x64-debug (default)\cmakefiles\showincludes\foo.h" />
+    <ClInclude Include="src\kv\examples\out\build\x64-debug (default)\cmakefiles\showincludes\foo.h" />
+    <ClInclude Include="src\kv\iwal.h" />
+    <ClInclude Include="src\kv\iwkv.h" />
+    <ClInclude Include="src\kv\iwkv_internal.h" />
+    <ClInclude Include="src\kv\tests\iwkv_tests.h" />
+    <ClInclude Include="src\log\iwlog.h" />
+    <ClInclude Include="src\log\out\build\x64-debug (default)\cmakefiles\showincludes\foo.h" />
+    <ClInclude Include="src\log\tests\out\build\x64-debug (default)\cmakefiles\showincludes\foo.h" />
+    <ClInclude Include="src\platform\iwp.h" />
+    <ClInclude Include="src\platform\win32\mman\mman.h" />
+    <ClInclude Include="src\rdb\iwrdb.h" />
+    <ClInclude Include="src\tmpl\iwcfg.h" />
+    <ClInclude Include="src\utils\iwarr.h" />
+    <ClInclude Include="src\utils\iwbits.h" />
+    <ClInclude Include="src\utils\iwconv.h" />
+    <ClInclude Include="src\utils\iwhmap.h" />
+    <ClInclude Include="src\utils\iwpool.h" />
+    <ClInclude Include="src\utils\iwsha2.h" />
+    <ClInclude Include="src\utils\iwstree.h" />
+    <ClInclude Include="src\utils\iwstw.h" />
+    <ClInclude Include="src\utils\iwth.h" />
+    <ClInclude Include="src\utils\iwutils.h" />
+    <ClInclude Include="src\utils\iwuuid.h" />
+    <ClInclude Include="src\utils\iwxstr.h" />
+    <ClInclude Include="src\utils\kbtree.h" />
+    <ClInclude Include="src\utils\khash.h" />
+    <ClInclude Include="src\utils\ksort.h" />
+    <ClInclude Include="src\utils\mt19937ar.h" />
+    <ClInclude Include="src\utils\murmur3.h" />
+    <ClInclude Include="src\utils\pthread_spin_lock_shim.h" />
+    <ClInclude Include="tests\log_tests\out\build\x64-debug (default)\cmakefiles\showincludes\foo.h" />
+    <ClInclude Include="tests\main.h" />
+    <ClInclude Include="tests\utils_tests\out\build\x64-debug (default)\cmakefiles\showincludes\foo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="tests\utils_tests\out\build\x64-debug (default)\cmakefiles\cmaketmp\cmakefiles\cmtc_d3732.dir\manifest.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
