@@ -1,4 +1,6 @@
-﻿tests\main.c(7,6): warning : unused variable 'rc' [-Wunused-variable]
-  
-tests\utils_tests\out\build\x64-debug (default)\cmakefiles\cmaketmp\cmakefiles\cmtc_d3732.dir\manifest.rc(2): error RC2135: file not found: C:/Users/dusan/source/repos/iowow/src/utils/tests/out/build/x64-Debug (default)/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_d3732.dir/embed.manifest
-  
+﻿  In file included from src\platform\iwp.c:45:
+src\platform/win32/win32.c(38,12): warning : implicit declaration of function 'clock_gettime' is invalid in C99 [-Wimplicit-function-declaration]
+src\platform/win32/win32.c(105,6): warning : implicit declaration of function 'nanosleep' is invalid in C99 [-Wimplicit-function-declaration]
+src\platform/win32/win32.c(121,6): warning : implicit declaration of function 'S_ISREG' is invalid in C99 [-Wimplicit-function-declaration]
+src\platform/win32/win32.c(124,11): warning : implicit declaration of function 'S_ISDIR' is invalid in C99 [-Wimplicit-function-declaration]
+src\platform\iwp.c(60,2): warning : implicit declaration of function '__cpuid' is invalid in C99 [-Wimplicit-function-declaration]

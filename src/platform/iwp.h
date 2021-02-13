@@ -36,14 +36,17 @@
   //DBJ #include <tmpl/iwcfg.h>
 
 #include <tmpl/iwcfg.h>
+// DBJ
+#undef  IW_EXPORT
+#define IW_EXPORT extern
 
 #ifndef IW_ERROR_IO_ERRNO
 #include <log/iwlog.h>
 #endif
 
-#include <stdint.h>
-#include <stdio.h>
-#include <stdbool.h>
+//#include <stdint.h>
+//#include <stdio.h>
+//#include <stdbool.h>
 
 #ifndef _WIN32
 #include <sys/time.h>
@@ -116,7 +119,7 @@ typedef enum {
 /**
  * Portable version of `int clock_gettime(clockid_t clk_id, struct timespec *tp)`
  */
-/*IW_EXPORT*/ iwrc iwp_clock_get_time(int clock_id, struct timespec* t);
+IW_EXPORT iwrc iwp_clock_get_time(int clock_id, struct timespec* t);
 
 /**
  * @brief Get current time in milliseconds.
