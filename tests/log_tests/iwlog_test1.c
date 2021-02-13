@@ -26,44 +26,71 @@
  *************************************************************************************************/
 
 
-#include "iwcfg.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <CUnit/Basic.h>
+#include "../main.h"
+ //#include <stdio.h>
+ //#include <stdlib.h>
+ //#include <unistd.h>
 
-#include "iwlog.h"
-#include "iwutils.h"
+//int init_suite(void) {
+//	int rc = iwlog_init();
+//	return rc;
+//}
+//
+//int clean_suite(void) {
+//	return 0;
+//}
 
-int init_suite(void) {
-	int rc = iwlog_init();
-	return rc;
+typedef struct { FILE* fp; char* name; } temp_file;
+static temp_file my_temp_file(void)
+{
+#undef name_template
+#define name_template "fnXXXXXX"
+	static char* name_temp = "fnXXXXXX"; // 9 chars
+	name_temp = name_template;
+
+	/* Get the size of the string and add one for the null terminator.*/
+	size_t sizeInChars = strnlen(name_temp, 9) + 1;
+	/* Attempt to find a unique filename: */
+	int err = _mktemp_s(name_temp, sizeInChars);
+	if (err != 0) {
+		perror("Problem creating the temp file name");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		FILE* fp = NULL;
+		if (fopen_s(&fp, name_temp, "w") == 0) {
+			printf("Unique filename is %s\n", name_temp);
+		}
+		else {
+			printf("Cannot open %s\n", name_temp);
+			fclose(fp);
+			perror("exiting");
+			exit(EXIT_FAILURE);
+		}
+
+		return (temp_file) { fp, name_temp };
+	}
+#undef name_template
 }
 
-int clean_suite(void) {
-	return 0;
-}
-
-void iwlog_test1() {
+UTEST(iwlog, test1) {
 	uint32_t ec = (0xfffffffdU & 0x3fffffffU);
 	uint64_t rc = 0xfafafafaULL;
 	rc = iwrc_set_errno(rc, ec);
 	uint32_t ec2 = iwrc_strip_errno(&rc);
-	CU_ASSERT_EQUAL(ec, ec2);
-	CU_ASSERT_EQUAL(rc, 0xfafafafaULL);
+	ASSERT_EQ(ec, ec2);
+	ASSERT_EQ(rc, 0xfafafafaULL);
 }
 
-void iwlog_test2() {
+UTEST(iwlog, test2) {
 	IWLOG_DEFAULT_OPTS opts = { 0 };
 	int rv = 0;
 	size_t sz;
-	char fname[] = "iwlog_test1_XXXXXX";
-	int fd = mkstemp(fname);
-	CU_ASSERT_TRUE(fd != 1);
-	FILE* out = fdopen(fd, "w");
-	CU_ASSERT_PTR_NOT_NULL(out);
+	temp_file tfile = my_temp_file();
+	FILE* out = tfile.fp;
 
-	fprintf(stderr, "Redirecting log to: %s" IW_LINE_SEP, fname);
+	fprintf(stderr, "Redirecting log to: %s" IW_LINE_SEP, tfile.name);
 
 	opts.out = out;
 	iwlog_set_logfn_opts(&opts);
@@ -75,60 +102,59 @@ void iwlog_test2() {
 	errno = ENOENT;
 	iwrc ecode = iwrc_set_errno(IW_ERROR_ERRNO, errno);
 	rv = iwlog(IWLOG_DEBUG, ecode, NULL, 0, "ERRNO Message");
-	CU_ASSERT_EQUAL(rv, 0);
+	ASSERT_EQ(rv, 0);
 	errno = 0;
+
 	fclose(out);
+	out = fopen(tfile.name, "r");
+	ASSERT_TRUE(out);
 
-	out = fopen(fname, "r");
-	CU_ASSERT_PTR_NOT_NULL_FATAL(out);
-
-	char buf[1024];
+	char buf[1024] = { 0 };
 	memset(buf, 0, 1024);
 	sz = fread(buf, 1, 1024, out);
-	CU_ASSERT_TRUE(sz);
+	ASSERT_TRUE(sz);
 	fprintf(stderr, "%s\n\n" IW_LINE_SEP, buf);
 
-	CU_ASSERT_PTR_NOT_NULL(strstr(buf, "7fa79c75beac413d83f35ffb6bf571b9"));
-	CU_ASSERT_PTR_NOT_NULL(strstr(buf, "7e94f7214af64513b30ab4df3f62714aC"));
-	CU_ASSERT_PTR_NOT_NULL(strstr(buf,
+	ASSERT_TRUE(strstr(buf, "7fa79c75beac413d83f35ffb6bf571b9"));
+	ASSERT_TRUE(strstr(buf, "7e94f7214af64513b30ab4df3f62714aC"));
+	ASSERT_TRUE(strstr(buf,
 		"DEBUG 70001|2|0|Error with expected errno "
 		"status set. (IW_ERROR_ERRNO)|"));
-	CU_ASSERT_PTR_NOT_NULL(strstr(buf, "ERRNO Message"));
-	CU_ASSERT_PTR_NOT_NULL(strstr(buf, "ERROR iwlog_test1.c:"));
-	CU_ASSERT_PTR_NOT_NULL(strstr(buf, "70004|0|0|Resource is readonly. (IW_ERROR_READONLY)|"));
-	CU_ASSERT_PTR_NOT_NULL(strstr(buf, "c94645c3b107433497ef295b1c00dcff12"));
+	ASSERT_TRUE(strstr(buf, "ERRNO Message"));
+	ASSERT_TRUE(strstr(buf, "ERROR iwlog_test1.c:"));
+	ASSERT_TRUE(strstr(buf, "70004|0|0|Resource is readonly. (IW_ERROR_READONLY)|"));
+	ASSERT_TRUE(strstr(buf, "c94645c3b107433497ef295b1c00dcff12"));
 
 	fclose(out);
-	unlink(fname);
 }
 
-int log_tests(int argc, const char* const* argv) {
-	CU_pSuite pSuite = NULL;
-
-	/* Initialize the CUnit test registry */
-	if (CUE_SUCCESS != CU_initialize_registry()) {
-		return CU_get_error();
-	}
-
-	/* Add a suite to the registry */
-	pSuite = CU_add_suite("iwlog_test1", init_suite, clean_suite);
-
-	if (NULL == pSuite) {
-		CU_cleanup_registry();
-		return CU_get_error();
-	}
-
-	/* Add the tests to the suite */
-	if ((NULL == CU_add_test(pSuite, "iwlog_test1", iwlog_test1))
-		|| (NULL == CU_add_test(pSuite, "iwlog_test2", iwlog_test2))) {
-		CU_cleanup_registry();
-		return CU_get_error();
-	}
-
-	/* Run all tests using the CUnit Basic interface */
-	CU_basic_set_mode(CU_BRM_VERBOSE);
-	CU_basic_run_tests();
-	int ret = CU_get_error() || CU_get_number_of_failures();
-	CU_cleanup_registry();
-	return ret;
-}
+//int log_tests(int argc, const char* const* argv) {
+//	CU_pSuite pSuite = NULL;
+//
+//	/* Initialize the CUnit test registry */
+//	if (CUE_SUCCESS != CU_initialize_registry()) {
+//		return CU_get_error();
+//	}
+//
+//	/* Add a suite to the registry */
+//	pSuite = CU_add_suite("iwlog_test1", init_suite, clean_suite);
+//
+//	if (NULL == pSuite) {
+//		CU_cleanup_registry();
+//		return CU_get_error();
+//	}
+//
+//	/* Add the tests to the suite */
+//	if ((NULL == CU_add_test(pSuite, "iwlog_test1", iwlog_test1))
+//		|| (NULL == CU_add_test(pSuite, "iwlog_test2", iwlog_test2))) {
+//		CU_cleanup_registry();
+//		return CU_get_error();
+//	}
+//
+//	/* Run all tests using the CUnit Basic interface */
+//	CU_basic_set_mode(CU_BRM_VERBOSE);
+//	CU_basic_run_tests();
+//	int ret = CU_get_error() || CU_get_number_of_failures();
+//	CU_cleanup_registry();
+//	return ret;
+//}

@@ -28,7 +28,7 @@
  * SOFTWARE.
  *************************************************************************************************/
 
-#include "basedefs.h"
+#include <tmpl/iwcfg.h>
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>

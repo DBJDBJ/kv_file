@@ -30,9 +30,12 @@
  *************************************************************************************************/
 
 
-#include "basedefs.h"
+#include "../basedefs.h"
 
+#undef STR_HELPER
 #define STR_HELPER(x) #x
+
+#undef STR
 #define STR(x)        STR_HELPER(x)
 
 #include <stddef.h>
@@ -43,6 +46,21 @@
 #include <string.h>
 #include <errno.h>
 #include <limits.h>
+#include <time.h>
+#include <math.h>
+
+#include <stdarg.h>
+#include <ctype.h>
+
+typedef intmax_t ssize_t;
+
+// DBJ
+#ifndef _WIN32
+#include <unistd.h>
+#else
+#include <io.h>
+#include <process.h>
+#endif
 
 #ifndef MAXPATHLEN
 #ifdef PATH_MAX
@@ -52,17 +70,63 @@
 #endif
 #endif
 
-#if !defined(IW_32) && !defined(IW_64)
-#error Unknown CPU bits
-#endif
-
-#define IOWOW_VERSION       "@iowow_VERSION@"
-#define IOWOW_VERSION_MAJOR @iowow_VERSION_MAJOR@
-#define IOWOW_VERSION_MINOR @iowow_VERSION_MINOR@
-#define IOWOW_VERSION_PATCH @iowow_VERSION_PATCH@
+// DBJ
+#define IOWOW_VERSION       "0.0.0"
+#define IOWOW_VERSION_MAJOR 0
+#define IOWOW_VERSION_MINOR 0
+#define IOWOW_VERSION_PATCH 0
 
 #ifndef static_assert
 #define static_assert _Static_assert
 #endif
 
-#endif
+
+ // DBJ for some reason need it?
+extern char* strndup(const char*, size_t);
+/*
+*
+
+@deftypefn Extension char* strndup (const char *@var{s}, size_t @var{n})
+
+Returns a pointer to a copy of @var{s} with at most @var{n} characters
+in memory obtained from @code{malloc}, or @code{NULL} if insufficient
+memory was available.  The result is always @code{NULL} terminated.
+
+@end deftypefn
+
+
+
+#include "ansidecl.h"
+ #ifdef ANSI_PROTOTYPES
+ #include <stddef.h>
+ #else
+ #define size_t unsigned long
+ #endif
+
+extern size_t	strlen PARAMS((const char*));
+extern PTR	malloc PARAMS((size_t));
+extern PTR	memcpy PARAMS((PTR, const PTR, size_t));
+
+char*
+strndup(s, n)
+ const char* s;
+size_t n;
+{
+char* result;
+size_t len = strlen(s);
+
+	if (n < len)
+	 len = n;
+
+	result = malloc(len + 1);
+if (!result)
+	 return 0;
+
+	result[len] = '\0';
+return memcpy(result, s, len);
+}
+*/
+
+#include <log/iwlog.h> // DBJ
+
+#endif // IW_CFG_H

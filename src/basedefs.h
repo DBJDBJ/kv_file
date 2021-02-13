@@ -27,11 +27,11 @@
  * SOFTWARE.
  *************************************************************************************************/
 
-/**
- * @file
- * @brief Very basic definitions.
- * @author Anton Adamansky (adamansky@softmotions.com)
- */
+ /**
+  * @file
+  * @brief Very basic definitions.
+  * @author Anton Adamansky (adamansky@softmotions.com)
+  */
 
 #ifdef __cplusplus
 #define IW_EXTERN_C_START extern "C" {
@@ -89,6 +89,18 @@ typedef int HANDLE;
 #define IW_ERROR_START 70000
 
 #ifdef _WIN32
+#define IW_32 1 
+#endif
+
+#ifdef WIN64
+#define IW_64 1 
+#endif
+
+#if !defined(IW_32) && !defined(IW_64)
+#error Unknown CPU bits
+#endif
+
+#ifdef _WIN32
 #define IW_PATH_CHR '\\'
 #define IW_PATH_STR "\\"
 #define IW_LINE_SEP "\r\n"
@@ -100,13 +112,13 @@ typedef int HANDLE;
 
 #define ZGO(label__, val__)           \
   ({ __typeof__(val__) v__ = (val__); \
-    if (!v__) goto label__;           \
-    v__; })
+	if (!v__) goto label__;           \
+	v__; })
 
 #define ZRET(ret__, val__)            \
   ({ __typeof__(val__) v__ = (val__); \
-    if (!v__) return ret__;           \
-    v__; })
+	if (!v__) return ret__;           \
+	v__; })
 
 #ifdef __GNUC__
 #define RCGO(rc__, label__) if (__builtin_expect((!!(rc__)), 0)) goto label__
@@ -116,8 +128,8 @@ typedef int HANDLE;
 
 #define RCIF(res__, rc__, rcv__, label__)   \
   if (res__) {                              \
-    rc__ = (rcv__);                         \
-    goto label__;                           \
+	rc__ = (rcv__);                         \
+	goto label__;                           \
   }
 
 #define RCHECK(rc__, label__,  expr__) \
@@ -129,8 +141,8 @@ typedef int HANDLE;
 #ifndef RCGA
 #define RCGA(v__, label__)                        \
   if (!(v__)) {                                   \
-    rc =  iwrc_set_errno(IW_ERROR_ALLOC, errno);  \
-    goto label__;                                 \
+	rc =  iwrc_set_errno(IW_ERROR_ALLOC, errno);  \
+	goto label__;                                 \
   }
 #endif
 
@@ -198,8 +210,8 @@ typedef uint64_t iwrc;
  * @brief A rational number.
  */
 typedef struct IW_RNUM {
-  int32_t n;  /**< Numerator */
-  int32_t dn; /**< Denometator */
+	int32_t n;  /**< Numerator */
+	int32_t dn; /**< Denometator */
 } IW_RNUM;
 
 #endif

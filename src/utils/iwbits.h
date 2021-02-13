@@ -33,7 +33,7 @@
  *  @brief Various bit manipulation utility methods.
  */
 
-#include "basedefs.h"
+#include <tmpl/iwcfg.h>
 #include <stdint.h>
 
 IW_EXTERN_C_START

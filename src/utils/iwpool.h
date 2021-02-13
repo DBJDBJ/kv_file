@@ -30,7 +30,7 @@
  * SOFTWARE.
  *************************************************************************************************/
 
-#include "basedefs.h"
+#include <tmpl/iwcfg.h>
 IW_EXTERN_C_START
 
 #ifndef IWPOOL_POOL_SIZ

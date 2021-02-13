@@ -30,7 +30,7 @@
    SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "basedefs.h"
+#include <tmpl/iwcfg.h>
 #include <stdbool.h>
 
 IW_EXTERN_C_START

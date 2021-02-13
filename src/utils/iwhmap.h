@@ -30,18 +30,19 @@
  * SOFTWARE.
  *************************************************************************************************/
 
-#include "basedefs.h"
+#include <tmpl/iwcfg.h>
+
 IW_EXTERN_C_START
 
 struct _IWHMAP;
 typedef struct _IWHMAP IWHMAP;
 
 typedef struct {
-  IWHMAP     *hm;
-  const void *key;
-  const void *val;
-  uint32_t    bucket;
-  int32_t     entry;
+	IWHMAP* hm;
+	const void* key;
+	const void* val;
+	uint32_t    bucket;
+	int32_t     entry;
 } IWHMAP_ITER;
 
 /**
@@ -50,34 +51,34 @@ typedef struct {
  * @param key Pointer to key or zero.
  * @param val Pointer to value of zero.
  */
-IW_EXPORT void iwhmap_kv_free(void *key, void *val);
+IW_EXPORT void iwhmap_kv_free(void* key, void* val);
 
-IW_EXPORT IWHMAP *iwhmap_create(
-  int (*cmp_fn)(const void*, const void*),
-  uint32_t (*hash_key_fn)(const void*),
-  void (*kv_free_fn)(void*, void*));
+IW_EXPORT IWHMAP* iwhmap_create(
+	int (*cmp_fn)(const void*, const void*),
+	uint32_t(*hash_key_fn)(const void*),
+	void (*kv_free_fn)(void*, void*));
 
-IW_EXPORT IWHMAP *iwhmap_create_i64(void (*kv_free_fn)(void*, void*));
+IW_EXPORT IWHMAP* iwhmap_create_i64(void (*kv_free_fn)(void*, void*));
 
-IW_EXPORT IWHMAP *iwhmap_create_i32(void (*kv_free_fn)(void*, void*));
+IW_EXPORT IWHMAP* iwhmap_create_i32(void (*kv_free_fn)(void*, void*));
 
-IW_EXPORT IWHMAP *iwhmap_create_str(void (*kv_free_fn)(void*, void*));
+IW_EXPORT IWHMAP* iwhmap_create_str(void (*kv_free_fn)(void*, void*));
 
-IW_EXPORT iwrc iwhmap_put(IWHMAP *hm, void *key, void *val);
+IW_EXPORT iwrc iwhmap_put(IWHMAP* hm, void* key, void* val);
 
-IW_EXPORT void iwhmap_remove(IWHMAP *hm, const void *key);
+IW_EXPORT void iwhmap_remove(IWHMAP* hm, const void* key);
 
-IW_EXPORT void *iwhmap_get(IWHMAP *hm, const void *key);
+IW_EXPORT void* iwhmap_get(IWHMAP* hm, const void* key);
 
-IW_EXPORT int iwhmap_count(IWHMAP *hm);
+IW_EXPORT int iwhmap_count(IWHMAP* hm);
 
-IW_EXPORT void iwhmap_clear(IWHMAP *hm);
+IW_EXPORT void iwhmap_clear(IWHMAP* hm);
 
-IW_EXPORT void iwhmap_iter_init(IWHMAP *hm, IWHMAP_ITER *iter);
+IW_EXPORT void iwhmap_iter_init(IWHMAP* hm, IWHMAP_ITER* iter);
 
-IW_EXPORT bool iwhmap_iter_next(IWHMAP_ITER *iter);
+IW_EXPORT bool iwhmap_iter_next(IWHMAP_ITER* iter);
 
-IW_EXPORT void iwhmap_destroy(IWHMAP *hm);
+IW_EXPORT void iwhmap_destroy(IWHMAP* hm);
 
 IW_EXTERN_C_END
 #endif

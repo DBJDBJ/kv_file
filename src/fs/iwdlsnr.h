@@ -2,7 +2,7 @@
 #ifndef IWDLSNR_H
 #define IWDLSNR_H
 
-#include "basedefs.h"
+#include <tmpl/iwcfg.h>
 #include <stdbool.h>
 
 IW_EXTERN_C_START

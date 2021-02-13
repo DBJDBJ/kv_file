@@ -27,17 +27,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *************************************************************************************************/
-/**
- * @file
- * @author Anton Adamansky (adamansky@softmotions.com)
- */
+ /**
+  * @file
+  * @author Anton Adamansky (adamansky@softmotions.com)
+  */
 
-#include "basedefs.h"
+#include <tmpl/iwcfg.h>
 #include "iwxstr.h"
-#include <math.h>
-#include <assert.h>
-#include <stdbool.h>
-#include <stdio.h>
+  //#include <math.h>
+  //#include <assert.h>
+  //#include <stdbool.h>
+  //#include <stdio.h>
+  //#include <limits.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+//#include <stdint.h>
+#include <fcntl.h>
+//#include <string.h>
+
 
 IW_EXTERN_C_START
 
@@ -167,7 +174,7 @@ IW_EXTERN_C_START
 #define OFF_T_MAX ((off_t) ~(((uint64_t) 1) << (8 * sizeof(off_t) - 1)))
 #endif
 
-#ifdef __GNUC__
+#if defined( __GNUC__ ) || defined(__clang__)
 #define IW_LIKELY(x_)   __builtin_expect(!!(x_), 1)
 #define IW_UNLIKELY(x_) __builtin_expect(!!(x_), 0)
 #else
@@ -188,100 +195,100 @@ IW_EXTERN_C_START
 /* set a buffer for a variable length 32 bit number */
 #define IW_SETVNUMBUF(len_, buf_, num_) \
   do { \
-    int32_t _num_ = (num_); \
-    if (_num_ == 0) { \
-      ((signed char*) (buf_))[0] = 0; \
-      (len_) = 1; \
-    } else { \
-      (len_) = 0; \
-      while (_num_ > 0) { \
-        int _rem_ = _num_ & 0x7f; \
-        _num_ >>= 7; \
-        if (_num_ > 0) { \
-          ((signed char*) (buf_))[(len_)] = ~(_rem_); \
-        } else { \
-          ((signed char*) (buf_))[(len_)] = _rem_; \
-        } \
-        (len_)++; \
-      } \
-    } \
+	int32_t _num_ = (num_); \
+	if (_num_ == 0) { \
+	  ((signed char*) (buf_))[0] = 0; \
+	  (len_) = 1; \
+	} else { \
+	  (len_) = 0; \
+	  while (_num_ > 0) { \
+		int _rem_ = _num_ & 0x7f; \
+		_num_ >>= 7; \
+		if (_num_ > 0) { \
+		  ((signed char*) (buf_))[(len_)] = ~(_rem_); \
+		} else { \
+		  ((signed char*) (buf_))[(len_)] = _rem_; \
+		} \
+		(len_)++; \
+	  } \
+	} \
   } while (0)
 
 /* set a buffer for a variable length 64 number */
 #define IW_SETVNUMBUF64(len_, buf_, num_) \
   do { \
-    int64_t _num_ = (num_); \
-    if (_num_ == 0) { \
-      ((signed char*) (buf_))[0] = 0; \
-      (len_) = 1; \
-    } else { \
-      (len_) = 0; \
-      while (_num_ > 0) { \
-        int _rem_ = _num_ & 0x7f; \
-        _num_ >>= 7; \
-        if (_num_ > 0) { \
-          ((signed char*) (buf_))[(len_)] = ~(_rem_); \
-        } else { \
-          ((signed char*) (buf_))[(len_)] = _rem_; \
-        } \
-        (len_)++; \
-      } \
-    } \
+	int64_t _num_ = (num_); \
+	if (_num_ == 0) { \
+	  ((signed char*) (buf_))[0] = 0; \
+	  (len_) = 1; \
+	} else { \
+	  (len_) = 0; \
+	  while (_num_ > 0) { \
+		int _rem_ = _num_ & 0x7f; \
+		_num_ >>= 7; \
+		if (_num_ > 0) { \
+		  ((signed char*) (buf_))[(len_)] = ~(_rem_); \
+		} else { \
+		  ((signed char*) (buf_))[(len_)] = _rem_; \
+		} \
+		(len_)++; \
+	  } \
+	} \
   } while (0)
 
 
 /* read a 32 bit variable length buffer */
 #define IW_READVNUMBUF(buf_, num_, step_) \
   do { \
-    (num_) = 0; \
-    int32_t _base_ = 1; \
-    int _i_ = 0; \
-    while (1) { \
-      if (((const signed char*) (buf_))[_i_] >= 0) { \
-        (num_) += _base_ * ((const signed char*) (buf_))[_i_]; \
-        break; \
-      } \
-      (num_) += _base_ * ~(((const signed char*) (buf_))[_i_]); \
-      _base_ <<= 7; \
-      _i_++; \
-    } \
-    (step_) = _i_ + 1; \
+	(num_) = 0; \
+	int32_t _base_ = 1; \
+	int _i_ = 0; \
+	while (1) { \
+	  if (((const signed char*) (buf_))[_i_] >= 0) { \
+		(num_) += _base_ * ((const signed char*) (buf_))[_i_]; \
+		break; \
+	  } \
+	  (num_) += _base_ * ~(((const signed char*) (buf_))[_i_]); \
+	  _base_ <<= 7; \
+	  _i_++; \
+	} \
+	(step_) = _i_ + 1; \
   } while (0)
 
 /* read a 64 bit variable length buffer */
 #define IW_READVNUMBUF64(buf_, num_, step_) \
   do { \
-    (num_) = 0; \
-    int64_t _base_ = 1; \
-    int _i_ = 0; \
-    while (1) { \
-      if (((const signed char*) (buf_))[_i_] >= 0) { \
-        (num_) += _base_ * ((const signed char*) (buf_))[_i_]; \
-        break; \
-      } \
-      (num_) += _base_ * ~(((const signed char*) (buf_))[_i_]); \
-      _base_ <<= 7; \
-      _i_++; \
-    } \
-    (step_) = _i_ + 1; \
+	(num_) = 0; \
+	int64_t _base_ = 1; \
+	int _i_ = 0; \
+	while (1) { \
+	  if (((const signed char*) (buf_))[_i_] >= 0) { \
+		(num_) += _base_ * ((const signed char*) (buf_))[_i_]; \
+		break; \
+	  } \
+	  (num_) += _base_ * ~(((const signed char*) (buf_))[_i_]); \
+	  _base_ <<= 7; \
+	  _i_++; \
+	} \
+	(step_) = _i_ + 1; \
   } while (0)
 
 
 /* read a 64 bit variable length buffer */
 #define IW_READVNUMBUF64_2(buf_, num_) \
   do { \
-    (num_) = 0; \
-    int64_t _base_ = 1; \
-    int _i_ = 0; \
-    while (1) { \
-      if (((const signed char*) (buf_))[_i_] >= 0) { \
-        (num_) += _base_ * ((const signed char*) (buf_))[_i_]; \
-        break; \
-      } \
-      (num_) += _base_ * ~(((const signed char*) (buf_))[_i_]); \
-      _base_ <<= 7; \
-      _i_++; \
-    } \
+	(num_) = 0; \
+	int64_t _base_ = 1; \
+	int _i_ = 0; \
+	while (1) { \
+	  if (((const signed char*) (buf_))[_i_] >= 0) { \
+		(num_) += _base_ * ((const signed char*) (buf_))[_i_]; \
+		break; \
+	  } \
+	  (num_) += _base_ * ~(((const signed char*) (buf_))[_i_]); \
+	  _base_ <<= 7; \
+	  _i_++; \
+	} \
   } while (0)
 
 
@@ -312,32 +319,32 @@ IW_EXTERN_C_START
 /* Lexicographic comparison of values */
 #define IW_CMP(rv_, vp1_, vp1sz_, vp2_, vp2sz_) \
   do { \
-    (rv_) = 0; \
-    int min_ = (vp1sz_) < (vp2sz_) ? (vp1sz_) : (vp2sz_); \
-    for (int i = 0; i < min_; i++) { \
-      (rv_) = (int) (((const uint8_t*) (vp1_))[i] - ((const uint8_t*) (vp2_))[i]); \
-      if (rv_) { \
-        break; \
-      } \
-    } \
-    if ((rv_) == 0) (rv_) = (vp1sz_) - (vp2sz_); \
+	(rv_) = 0; \
+	int min_ = (vp1sz_) < (vp2sz_) ? (vp1sz_) : (vp2sz_); \
+	for (int i = 0; i < min_; i++) { \
+	  (rv_) = (int) (((const uint8_t*) (vp1_))[i] - ((const uint8_t*) (vp2_))[i]); \
+	  if (rv_) { \
+		break; \
+	  } \
+	} \
+	if ((rv_) == 0) (rv_) = (vp1sz_) - (vp2sz_); \
   } while (0)
 
 
 /* Lexicographic comparison common prefix of values */
 #define IW_CMP2(rv_, vp1_, vp1sz_, vp2_, vp2sz_) \
   do { \
-    (rv_) = 0; \
-    int min_ = (vp1sz_) < (vp2sz_) ? (vp1sz_) : (vp2sz_); \
-    for (int i = 0; i < min_; i++) { \
-      (rv_) = (int) (((const uint8_t*) (vp1_))[i] - ((const uint8_t*) (vp2_))[i]); \
-      if (rv_) { \
-        break; \
-      } \
-    } \
+	(rv_) = 0; \
+	int min_ = (vp1sz_) < (vp2sz_) ? (vp1sz_) : (vp2sz_); \
+	for (int i = 0; i < min_; i++) { \
+	  (rv_) = (int) (((const uint8_t*) (vp1_))[i] - ((const uint8_t*) (vp2_))[i]); \
+	  if (rv_) { \
+		break; \
+	  } \
+	} \
   } while (0)
 
-IW_EXPORT iwrc iwu_init(void);
+	IW_EXPORT iwrc iwu_init(void);
 
 /**
  * @brief Set seed to random generator
@@ -370,18 +377,18 @@ IW_EXPORT int iwlog2_32(uint32_t val);
 
 IW_EXPORT int iwlog2_64(uint64_t val);
 
-IW_EXPORT uint32_t iwu_crc32(const uint8_t *buf, int len, uint32_t init);
+IW_EXPORT uint32_t iwu_crc32(const uint8_t* buf, int len, uint32_t init);
 
 /**
  * @brief Replaces a char @a sch with @a rch in a null terminated @a data char buffer.
  */
-IW_EXPORT char *iwu_replace_char(char *data, char sch, char rch);
+IW_EXPORT char* iwu_replace_char(char* data, char sch, char rch);
 
 /**
  * @brief Returns `\0` terminated string as replacement
  * of given `key`.
  */
-typedef const char* (*iwu_replace_mapper)(const char *key, void *op);
+typedef const char* (*iwu_replace_mapper)(const char* key, void* op);
 
 /**
  * @brief Replaces all occurriences of `keys`
@@ -396,22 +403,22 @@ typedef const char* (*iwu_replace_mapper)(const char *key, void *op);
  * @param mapper_op Replacement mapper opaque data
  */
 IW_EXPORT iwrc iwu_replace(
-  IWXSTR           **result,
-  const char        *data,
-  int                datalen,
-  const char        *keys[],
-  int                keysz,
-  iwu_replace_mapper mapper,
-  void              *mapper_op);
+	IWXSTR** result,
+	const char* data,
+	int                datalen,
+	const char* keys[],
+	int                keysz,
+	iwu_replace_mapper mapper,
+	void* mapper_op);
 
-IW_EXPORT int iwu_cmp_files(FILE *f1, FILE *f2, bool verbose);
+IW_EXPORT int iwu_cmp_files(FILE* f1, FILE* f2, bool verbose);
 
-IW_EXPORT char *iwu_file_read_as_buf(const char *path);
+IW_EXPORT char* iwu_file_read_as_buf(const char* path);
 
 /**
  * @brief Create X31 hash value.
  */
-IW_EXPORT uint32_t iwu_x31_u32_hash(const char *data);
+IW_EXPORT uint32_t iwu_x31_u32_hash(const char* data);
 
 IW_EXTERN_C_END
 

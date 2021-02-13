@@ -2,7 +2,7 @@
 #ifndef IWUUID_H
 #define IWUUID_H
 
-#include "basedefs.h"
+#include <tmpl/iwcfg.h>
 
 IW_EXTERN_C_START
 

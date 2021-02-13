@@ -28,7 +28,7 @@
 #ifndef IWTH_H
 #define IWTH_H
 
-#include "basedefs.h"
+#include <tmpl/iwcfg.h>
 #include <pthread.h>
 
 #if defined(__APPLE__) || (defined(__ANDROID_API__) && __ANDROID_API__ < 24)

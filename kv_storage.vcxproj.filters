@@ -30,127 +30,13 @@
     <ClCompile Include="src\fs\iwfsmfile.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\fs\tests\iwfs_test1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\fs\tests\iwfs_test2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\fs\tests\iwfs_test3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\kv\iwal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\kv\iwkv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\kv\benchmark\bdb_benchmark.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\benchmark\bmbase.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\benchmark\iwkv_benchmark.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\benchmark\kyc_benchmark.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\benchmark\leveldb_benchmark.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\benchmark\lmdb_benchmark.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\benchmark\tc_benchmark.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\benchmark\wiredtiger_benchmark.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\benchmark\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridc\CMakeCCompilerId.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\benchmark\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridcxx\CMakeCXXCompilerId.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\benchmark\out\build\x64-debug (default)\cmakefiles\showincludes\main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\dbg\iwkvdbg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\examples\compoundkeys1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\examples\cursors1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\examples\example1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\examples\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridc\CMakeCCompilerId.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\examples\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridcxx\CMakeCXXCompilerId.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\examples\out\build\x64-debug (default)\cmakefiles\showincludes\main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\tests\iwkv_test1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\tests\iwkv_test10.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\tests\iwkv_test2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\tests\iwkv_test3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\tests\iwkv_test4.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\tests\iwkv_test5.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\tests\iwkv_test6.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\tests\iwkv_test7.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\tests\iwkv_test8.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\kv\tests\iwkv_test9.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\log\iwlog.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\log\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridc\CMakeCCompilerId.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\log\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridcxx\CMakeCXXCompilerId.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\log\out\build\x64-debug (default)\cmakefiles\showincludes\main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\log\tests\iwlog_test1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\log\tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridc\CMakeCCompilerId.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\log\tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridcxx\CMakeCXXCompilerId.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\log\tests\out\build\x64-debug (default)\cmakefiles\showincludes\main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\platform\iwp.c">
@@ -213,50 +99,8 @@
     <ClCompile Include="tests\log_tests\iwlog_test1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests\log_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridc\CMakeCCompilerId.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests\log_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridcxx\CMakeCXXCompilerId.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests\log_tests\out\build\x64-debug (default)\cmakefiles\showincludes\main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests\utils_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridc\CMakeCCompilerId.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests\utils_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\compileridcxx\CMakeCXXCompilerId.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests\utils_tests\out\build\x64-debug (default)\cmakefiles\showincludes\main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\kv\benchmark\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_C.bin">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="src\kv\benchmark\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_CXX.bin">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="src\kv\examples\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_C.bin">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="src\kv\examples\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_CXX.bin">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="src\log\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_C.bin">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="src\log\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_CXX.bin">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="src\log\tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_C.bin">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="src\log\tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_CXX.bin">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="tests\log_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_C.bin">
       <Filter>Resource Files</Filter>
     </None>
@@ -266,7 +110,6 @@
     <None Include="tests\utils_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_C.bin">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="src\kv\benchmark\benchmark_results.html" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\basedefs.h">
@@ -296,22 +139,7 @@
     <ClInclude Include="src\kv\iwkv_internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\kv\benchmark\out\build\x64-debug (default)\cmakefiles\showincludes\foo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\kv\examples\out\build\x64-debug (default)\cmakefiles\showincludes\foo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\kv\tests\iwkv_tests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\log\iwlog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\log\out\build\x64-debug (default)\cmakefiles\showincludes\foo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\log\tests\out\build\x64-debug (default)\cmakefiles\showincludes\foo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\platform\iwp.h">

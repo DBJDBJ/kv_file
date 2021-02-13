@@ -33,7 +33,7 @@
  *
  *************************************************************************************************/
 
-#include "basedefs.h"
+#include <tmpl/iwcfg.h>
 #include <stddef.h>
 
 IW_EXTERN_C_START
