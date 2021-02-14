@@ -1,3 +1,0 @@
-[submodule "pthreads"]
-	path = pthreads
-	url = https://github.com/BrianGladman/pthreads.git

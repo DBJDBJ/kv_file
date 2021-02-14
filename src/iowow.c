@@ -31,6 +31,11 @@
 #include <utils/iwutils.h>
 #include <platform/iwp.h>
 
+ // DBJ
+ // pthreads exported lib is in C:\Users\dusan\source\repos\pthreads\lib\x64\Release
+// this is RELEASE build
+#pragma comment(lib, "pthreads.lib")
+
  // Hardcoded requirements (fixme)
  // CMakeLists.txt defines: -D_LARGEFILE_SOURCE=1 -D_FILE_OFFSET_BITS=64
  // DBJ removed -- static_assert(sizeof(off_t) == 8, "sizeof(off_t) == 8 bytes");

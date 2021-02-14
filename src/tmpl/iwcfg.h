@@ -81,51 +81,34 @@ typedef intmax_t ssize_t;
 #endif
 
 
- // DBJ for some reason need it?
-extern char* strndup(const char*, size_t);
+ // DBJ need it in current cl
+extern char* dbj_strndup(const char*, size_t);
 /*
-*
-
-@deftypefn Extension char* strndup (const char *@var{s}, size_t @var{n})
+Extension char* strndup (const char *@var{s}, size_t @var{n})
 
 Returns a pointer to a copy of @var{s} with at most @var{n} characters
 in memory obtained from @code{malloc}, or @code{NULL} if insufficient
 memory was available.  The result is always @code{NULL} terminated.
 
-@end deftypefn
+*/
 
-
-
-#include "ansidecl.h"
- #ifdef ANSI_PROTOTYPES
- #include <stddef.h>
- #else
- #define size_t unsigned long
- #endif
-
-extern size_t	strlen PARAMS((const char*));
-extern PTR	malloc PARAMS((size_t));
-extern PTR	memcpy PARAMS((PTR, const PTR, size_t));
-
-char*
-strndup(s, n)
- const char* s;
-size_t n;
+inline char* dbj_strndup(const char* s, size_t n)
 {
-char* result;
-size_t len = strlen(s);
+	char* result;
+	size_t len = strlen(s);
 
 	if (n < len)
-	 len = n;
+		len = n;
 
 	result = malloc(len + 1);
-if (!result)
-	 return 0;
+	if (!result)
+		return 0;
 
 	result[len] = '\0';
-return memcpy(result, s, len);
+	return memcpy(result, s, len);
 }
-*/
+
+#define strndup dbj_strndup
 
 #include <log/iwlog.h> // DBJ
 

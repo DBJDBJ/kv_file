@@ -65,17 +65,21 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\pthreads;$(SolutionDir)\src;D:\MACHINE_WIDE;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\dusan\source\repos\pthreads\lib\x64\Release;$(SolutionDir)\src;D:\MACHINE_WIDE;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\dusan\source\repos\pthreads\lib\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\pthreads;$(SolutionDir)\src;D:\MACHINE_WIDE;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\dusan\source\repos\pthreads\lib\x64\Release;$(SolutionDir)\src;D:\MACHINE_WIDE;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\dusan\source\repos\pthreads\lib\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)\pthreads;$(SolutionDir)\src;D:\MACHINE_WIDE;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\dusan\source\repos\pthreads\lib\x64\Release;$(SolutionDir)\src;D:\MACHINE_WIDE;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\dusan\source\repos\pthreads\lib\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)\pthreads;$(SolutionDir)\src;D:\MACHINE_WIDE;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\dusan\source\repos\pthreads\lib\x64\Release;$(SolutionDir)\src;D:\MACHINE_WIDE;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\dusan\source\repos\pthreads\lib\x64\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -140,9 +144,7 @@
     <ClCompile Include="src\kv\iwkv.c" />
     <ClCompile Include="src\log\iwlog.c" />
     <ClCompile Include="src\platform\iwp.c" />
-    <ClCompile Include="src\platform\unix\unix.c" />
     <ClCompile Include="src\platform\win32\mman\mman.c" />
-    <ClCompile Include="src\platform\win32\win32.c" />
     <ClCompile Include="src\rdb\iwrdb.c" />
     <ClCompile Include="src\utils\iwarr.c" />
     <ClCompile Include="src\utils\iwconv.c" />

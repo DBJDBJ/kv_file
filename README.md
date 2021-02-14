@@ -27,6 +27,25 @@ Idea is to "make it work" on WIN32. Without CMake and/or VSCode but with VisualS
 `kv_file/src/platform/win32/win32.c` 
     - I am not 100% sure here, will have to look into the linking problem a bit deeper.
 
+### pthreads for win
+
+Basically WIN implementation has been chosen and used and linked in.
+
+- https://github.com/BrianGladman/pthreads
+- clone it somewhere for example `c:\pthreads`
+  - do not use `pthreads/build.vs/pthreads.sln`
+  - Ignore the suggestion to download the Python part of Visual Studio
+- Just use the project in `pthreads/build.vs/pthreads_lib/`
+- it will create `c:\pthreads\lib\...` `x64` or whatever platform you have built for
+- add that to the include paths and add that to the linker include paths
+
+in `iowow.c` there is this pragma that links in the lib
+
+```cpp
+#pragma comment(lib, "pthreads.lib")
+```
+This is a mess and I will look into some more intelligent  replacement of `pthreads` for win.
+
 ## Caveat Emptor
 
 My day job is not programming. It is architecting and managing. Thus this all depends on my bandwidth.  Stay tuned :)
