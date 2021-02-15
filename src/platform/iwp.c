@@ -33,22 +33,25 @@
 #include <stdio.h>
 
 #if (defined(_WIN32) || defined(__WIN32__))
+#include <intrin.h> // DBJ
 #include <direct.h>
 #endif
 
-unsigned int iwcpuflags = 0;
-static iwrc _iwp_init_impl(void);
+static unsigned int iwcpuflags = 0;
+extern iwrc _iwp_init_impl(void);
 
-#if defined(__linux) || defined(__unix) || defined(__APPLE__)
-#include "unix/unix.c"
-#elif defined(_WIN32)
-#include "win32/win32.c"
-#else
-#error Unsupported platform
-#endif
+//#if defined(__linux) || defined(__unix) || defined(__APPLE__)
+//#include "unix/unix.c"
+//#elif defined(_WIN32)
+//#include "win32/win32.c"
+//#else
+//#error Unsupported platform
+//#endif
 
+// we build on WIN10 thus we ignore the MAX_PATH == 260 issue
 #undef PATH_MAX
 #define PATH_MAX 1024
+
 
 // Thanks to https://attractivechaos.wordpress.com/2017/09/04/on-cpu-dispatch
 static unsigned int x86_simd(void) {

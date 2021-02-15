@@ -40,37 +40,38 @@
 //	return 0;
 //}
 
-typedef struct { FILE* fp; char* name; } temp_file;
+typedef struct { FILE* fp; char name[_MAX_PATH]; } temp_file;
 static temp_file my_temp_file(void)
 {
+	temp_file rezult_;
+
 #undef name_template
 #define name_template "fnXXXXXX"
-	static char* name_temp = "fnXXXXXX"; // 9 chars
-	name_temp = name_template;
+
+	_snprintf_s(rezult_.name, _MAX_PATH, _MAX_PATH, "%s", name_template);
 
 	/* Get the size of the string and add one for the null terminator.*/
-	size_t sizeInChars = strnlen(name_temp, 9) + 1;
+	size_t sizeInChars = strlen(rezult_.name) + 1;
 	/* Attempt to find a unique filename: */
-	int err = _mktemp_s(name_temp, sizeInChars);
+	int err = _mktemp_s(rezult_.name, sizeInChars);
 	if (err != 0) {
 		perror("Problem creating the temp file name");
 		exit(EXIT_FAILURE);
 	}
-	else
-	{
-		FILE* fp = NULL;
-		if (fopen_s(&fp, name_temp, "w") == 0) {
-			printf("Unique filename is %s\n", name_temp);
-		}
-		else {
-			printf("Cannot open %s\n", name_temp);
-			fclose(fp);
-			perror("exiting");
-			exit(EXIT_FAILURE);
-		}
 
-		return (temp_file) { fp, name_temp };
+	FILE* fp = NULL;
+	if (fopen_s(&fp, rezult_.name, "w") == 0) {
+		// printf("Unique filename is %s\n", rezult_.name);
 	}
+	else {
+		printf("Cannot open %s\n", rezult_.name);
+		fclose(fp);
+		perror("exiting");
+		exit(EXIT_FAILURE);
+	}
+
+	rezult_.fp = fp;
+	return rezult_;
 #undef name_template
 }
 

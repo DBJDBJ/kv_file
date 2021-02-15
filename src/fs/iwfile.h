@@ -61,6 +61,7 @@
   * @endcode
   */
 
+#include <tmpl/iwcfg.h>
 #include "iowow.h"
 #include <log/iwlog.h>
 #include <platform/iwp.h>

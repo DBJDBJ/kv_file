@@ -40,9 +40,9 @@
 #undef  IW_EXPORT
 #define IW_EXPORT extern
 
-#ifndef IW_ERROR_IO_ERRNO
-#include <log/iwlog.h>
-#endif
+//#ifndef IW_ERROR_IO_ERRNO
+//#include <log/iwlog.h>
+//#endif
 
 //#include <stdint.h>
 //#include <stdio.h>
@@ -300,5 +300,9 @@ IW_EXPORT size_t iwp_tmpdir(char* out, size_t len);
  * @return Zero on error.
  */
 IW_EXPORT char* iwp_allocate_tmpfile_path(const char* prefix);
+
+#ifdef _WIN32
+char* basename(const char path_buffer[_MAX_PATH]);
+#endif // _WIN32
 
 #endif

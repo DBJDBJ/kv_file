@@ -42,9 +42,6 @@
     <ClCompile Include="src\platform\iwp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\platform\win32\mman\mman.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\rdb\iwrdb.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -93,6 +90,12 @@
     <ClCompile Include="tests\log_tests\iwlog_test1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\platform\win32\mman\mman.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\win32\win32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="tests\log_tests\out\build\x64-debug (default)\cmakefiles\3.18.20081302-msvc_2\CMakeDetermineCompilerABI_C.bin">
@@ -134,9 +137,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\platform\iwp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\platform\win32\mman\mman.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\rdb\iwrdb.h">
@@ -203,6 +203,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tests\log_tests\out\build\x64-debug (default)\cmakefiles\showincludes\foo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\win32\dbj_win32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

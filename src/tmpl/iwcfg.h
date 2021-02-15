@@ -80,16 +80,11 @@ typedef intmax_t ssize_t;
 #define static_assert _Static_assert
 #endif
 
-
+// https://en.cppreference.com/w/c/experimental/dynamic/strndup
  // DBJ need it in current cl
 extern char* dbj_strndup(const char*, size_t);
 /*
-Extension char* strndup (const char *@var{s}, size_t @var{n})
-
-Returns a pointer to a copy of @var{s} with at most @var{n} characters
-in memory obtained from @code{malloc}, or @code{NULL} if insufficient
-memory was available.  The result is always @code{NULL} terminated.
-
+taken from gcc cource
 */
 
 inline char* dbj_strndup(const char* s, size_t n)
@@ -109,6 +104,18 @@ inline char* dbj_strndup(const char* s, size_t n)
 }
 
 #define strndup dbj_strndup
+
+inline void dbj_time_stamp(char(*buf)[32], bool short_)
+{
+	time_t t = time(NULL);
+	struct tm lt;
+	errno_t errno_rez = localtime_s(&lt, &t);
+	_ASSERT(errno_rez == 0);
+	if (short_)
+		(*buf)[strftime((*buf), sizeof(*buf), "%H:%M:%S", &lt)] = '\0';
+	else
+		(*buf)[strftime((*buf), sizeof(*buf), "%Y-%m-%d %H:%M:%S", &lt)] = '\0';
+}
 
 #include <log/iwlog.h> // DBJ
 

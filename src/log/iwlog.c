@@ -40,7 +40,6 @@
 #include <time.h>
 #include <limits.h>
 
-
  //#if defined(__APPLE__) || defined(__FreeBSD__) || defined(__ANDROID__) || !_GNU_SOURCE
  //#include <libgen.h>
  //#elif defined(_WIN32)
@@ -49,7 +48,7 @@
  //#include <string.h>
  //#endif
  // DBJ
-#include <string.h>
+
 
 
 #ifdef __ANDROID__
@@ -375,19 +374,26 @@ static iwrc _default_logfn(
 
 #ifndef IW_ANDROID_LOG
 	// cppcheck-suppress portability
-	localtime_r(&ts_sec, &timeinfo);
+	// DBJ
+	//_localtime64_s(&ts_sec, &timeinfo);
 
-	sz = strftime(tbuf, TBUF_SZ, "%d %b %H:%M:%S", &timeinfo);
-	if (sz == 0) {
-		tbuf[0] = '\0';
-	}
-	else if (TBUF_SZ - sz > 4) {  // .000 suffix
-		tbuf[sz] = '.';
-		sz2 = snprintf((char*)tbuf + sz + 1, 4, "%03d", (int)(ts % 1000));
-		if (sz2 > 3) {
-			tbuf[sz] = '\0';
-		}
-	}
+	//sz = strftime(tbuf, TBUF_SZ, "%d %b %H:%M:%S", &timeinfo);
+	//if (sz == 0) {
+	//	tbuf[0] = '\0';
+	//}
+	//else if (TBUF_SZ - sz > 4) {  // .000 suffix
+	//	tbuf[sz] = '.';
+	//	sz2 = snprintf((char*)tbuf + sz + 1, 4, "%03d", (int)(ts % 1000));
+	//	if (sz2 > 3) {
+	//		tbuf[sz] = '\0';
+	//	}
+	//}
+	char bufy[32] = { 0 };
+
+	dbj_time_stamp(bufy, false);
+
+	_snprintf_s(tbuf, TBUF_SZ, TBUF_SZ, "%s", bufy);
+
 #else
 	android_LogPriority alp = ANDROID_LOG_INFO;
 #endif // IW_ANDROID_LOG

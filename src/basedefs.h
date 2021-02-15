@@ -27,6 +27,23 @@
  * SOFTWARE.
  *************************************************************************************************/
 
+
+#ifdef __clang__
+#pragma clang system_header
+#endif // __clang__
+ /*
+   DBJ
+  https://en.cppreference.com/w/c/experimental/dynamic/strndup
+ strndup is only guaranteed to be available if __STDC_ALLOC_LIB__ is defined
+ by the implementationand if the user defines __STDC_WANT_LIB_EXT2__
+ to the integer constant 1 before including string.h.
+ */
+#ifdef __STDC_ALLOC_LIB__
+#define __STDC_WANT_LIB_EXT2__ 1
+#else
+#define _POSIX_C_SOURCE 200809L
+#endif
+
  /**
   * @file
   * @brief Very basic definitions.
@@ -76,15 +93,27 @@
 #define IW_ARR_STATIC static
 #define IW_ARR_CONST const
 
+  // DBJ
+  //#define _CRT_NONSTDC_DEPRECATE 1
+  //#define _POSIX_THREAD_SAFE_FUNCTIONS 1
+
 #ifdef _WIN32
+
+#include <crtdbg.h>
+  // WIN10 BUILD
+#define  _WIN32_WINNT   0x0A00
+#define  WINVER 0xA00
+
+#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+
 #define INVALIDHANDLE(_HNDL) \
   (((_HNDL) == INVALID_HANDLE_VALUE) || (_HNDL) == NULL)
-#else
+#else // ! _WIN32
 typedef int HANDLE;
 #define INVALID_HANDLE_VALUE (-1)
 #define INVALIDHANDLE(_HNDL) ((_HNDL) < 0 || (_HNDL) == UINT16_MAX)
-#endif
+#endif // ! _WIN32
 
 #define IW_ERROR_START 70000
 

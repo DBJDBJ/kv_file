@@ -1,10 +1,13 @@
 
+#include "dbj_win32.h"
+
 #include <tmpl/iwcfg.h>
 #include "../iwp.h"
 #include <io.h>
 #include <math.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+
 
 #define _NANOSECONDS_PER_TICK   100ULL
 #define _NANOSECONDS_PER_SECOND 1000000000ULL
@@ -102,7 +105,7 @@ iwrc iwp_sleep(uint64_t ms) {
 	struct timespec req;
 	req.tv_sec = ms / 1000UL;
 	req.tv_nsec = (ms % 1000UL) * 1000UL * 1000UL;
-	if (nanosleep(&req, NULL)) {
+	if (!dbj_nanosleep(req.tv_nsec)) {
 		rc = iwrc_set_errno(IW_ERROR_THREADING_ERRNO, errno);
 	}
 	return rc;
@@ -315,7 +318,15 @@ size_t iwp_tmpdir(char* out, size_t len) {
 	return GetTempPathA(len, out);
 }
 
-static iwrc _iwp_init_impl() {
+iwrc _iwp_init_impl() {
 	_iwp_getsysinfo();
 	return 0;
 }
+
+char* basename(const char path_buffer[_MAX_PATH])
+{
+	static char basename_[_MAX_PATH] = { 0 };
+	(void)dbj_basename(path_buffer, _MAX_PATH, basename_);
+	return basename_;
+}
+

@@ -24,7 +24,6 @@
  * SOFTWARE.
  *************************************************************************************************/
 
-#include <tmpl/iwcfg.h>
 #include "log/iwlog.h"
 #include "platform/iwp.h"
 #include "iwfile.h"
