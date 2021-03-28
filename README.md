@@ -1,5 +1,17 @@
 
+# 2021 MAR 28
+
+Considering the existence of SQLite this is mildly ridiculous. 
+
+One just needs light C11 interface with SQLite in the back to have **very** resilient Key Value storage. With a very big capacity.
+
+I am also willing to bet that will be feasibly comparable to any stand-alone-do-it-from-scratch implementation like this one. *Feasibly* means: even if it is reasonably slower all the other qualities are moving the scale, far in favour of SQLite based solution.
+
+This I am archiving this one.
+
+
 # DBJ + IOWOW.IO
+
 
 Complete reshuffle of very interesting http://iowow.io
 ( IOWOW - The C11 persistent key/value database engine based on [skip list](https://en.wikipedia.org/wiki/Skip_list) )
